@@ -500,7 +500,7 @@ impl<
 > StakingLedger<AccountId, Balance> {
 	/// Remove entries from `unlocking` that are sufficiently old and reduce the
 	/// total by the sum of their balances.
-	fn consolidate_unlocked(self, current_era: EraIndex) -> Self {
+	pub fn consolidate_unlocked(self, current_era: EraIndex) -> Self {
 		let mut total = self.total;
 		let unlocking = self.unlocking.into_iter()
 			.filter(|chunk| if chunk.era > current_era {
@@ -2315,7 +2315,7 @@ impl<T: Trait> Module<T> {
 	/// Update the ledger for a controller.
 	///
 	/// This will also update the stash lock.
-	fn update_ledger(
+	pub fn update_ledger(
 		controller: &T::AccountId,
 		ledger: &StakingLedger<T::AccountId, BalanceOf<T>>
 	) {
@@ -2953,7 +2953,7 @@ impl<T: Trait> Module<T> {
 	/// This is called:
 	/// - after a `withdraw_unbond()` call that frees all of a stash's bonded balance.
 	/// - through `reap_stash()` if the balance has fallen to zero (through slashing).
-	fn kill_stash(stash: &T::AccountId, num_slashing_spans: u32) -> DispatchResult {
+	pub fn kill_stash(stash: &T::AccountId, num_slashing_spans: u32) -> DispatchResult {
 		let controller = <Bonded<T>>::get(stash).ok_or(Error::<T>::NotStash)?;
 
 		slashing::clear_stash_metadata::<T>(stash, num_slashing_spans)?;
