@@ -2217,7 +2217,7 @@ impl<T: Trait> Module<T> {
 		<SnapshotNominators<T>>::kill();
 	}
 
-	fn do_payout_stakers(
+	pub fn do_payout_stakers(
 		validator_stash: T::AccountId,
 		era: EraIndex,
 	) -> DispatchResult {
