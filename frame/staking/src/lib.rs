@@ -467,10 +467,10 @@ impl Default for ValidatorPrefs {
 pub struct UnlockChunk<Balance: HasCompact> {
 	/// Amount of funds to be unlocked.
 	#[codec(compact)]
-	value: Balance,
+	pub value: Balance,
 	/// Era number at which point it'll be unlocked.
 	#[codec(compact)]
-	era: EraIndex,
+	pub era: EraIndex,
 }
 
 /// The ledger of a (bonded) stash.
