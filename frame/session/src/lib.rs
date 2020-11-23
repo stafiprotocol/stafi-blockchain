@@ -752,7 +752,7 @@ impl<T: Trait> Module<T> {
 		Ok(())
 	}
 
-	fn load_keys(v: &T::ValidatorId) -> Option<T::Keys> {
+	pub fn load_keys(v: &T::ValidatorId) -> Option<T::Keys> {
 		<NextKeys<T>>::get(v)
 	}
 
@@ -764,7 +764,7 @@ impl<T: Trait> Module<T> {
 		<NextKeys<T>>::insert(v, keys);
 	}
 
-	fn key_owner(id: KeyTypeId, key_data: &[u8]) -> Option<T::ValidatorId> {
+	pub fn key_owner(id: KeyTypeId, key_data: &[u8]) -> Option<T::ValidatorId> {
 		<KeyOwner<T>>::get((id, key_data))
 	}
 
