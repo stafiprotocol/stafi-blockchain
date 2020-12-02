@@ -373,7 +373,7 @@ pub type RewardPoint = u32;
 // Note: Maximum nomination limit is set here -- 16.
 generate_solution_type!(
 	#[compact]
-	pub struct CompactAssignments::<NominatorIndex, ValidatorIndex, OffchainAccuracy>(1)
+	pub struct CompactAssignments::<NominatorIndex, ValidatorIndex, OffchainAccuracy>(3)
 );
 
 /// Accuracy used for on-chain election.
