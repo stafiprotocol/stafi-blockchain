@@ -270,7 +270,7 @@ impl InstanceWrapper {
 
 			let range = util::checked_range(address.into(), data.len(), memory.len())
 				.ok_or_else(|| Error::Other("memory write is out of bounds".into()))?;
-			&mut memory[range].copy_from_slice(data);
+			let _ = &mut memory[range].copy_from_slice(data);
 			Ok(())
 		}
 	}

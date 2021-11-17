@@ -852,7 +852,7 @@ fn check_catch_up<Block: BlockT>(
 		}
 
 		Ok(())
-	};
+	}
 
 	check_weight(
 		voters,

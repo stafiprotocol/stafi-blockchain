@@ -356,7 +356,7 @@ where
 		let l = uxt.encode().len();
 		match Self::apply_extrinsic_with_len(uxt, l, None) {
 			Ok(_) => (),
-			Err(e) => { let err: &'static str = e.into(); panic!(err) },
+			Err(e) => { let err: &'static str = e.into(); panic!("{}", err) },
 		}
 	}
 
@@ -468,7 +468,7 @@ where
 		<AllModules as OffchainWorker<System::BlockNumber>>::offchain_worker(
 			// to maintain backward compatibility we call module offchain workers
 			// with parent block number.
-			header.number().saturating_sub(1.into())
+			header.number().saturating_sub(1u32.into())
 		)
 	}
 }

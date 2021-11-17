@@ -71,7 +71,6 @@ pub fn test_leaves_for_backend<B: 'static>(backend: Arc<B>) where
 	).unwrap().build().unwrap().block;
 	client.import(BlockOrigin::Own, a2.clone()).unwrap();
 
-	#[allow(deprecated)]
 	assert_eq!(
 		blockchain.leaves().unwrap(),
 		vec![a2.hash()],
