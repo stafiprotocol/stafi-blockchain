@@ -716,17 +716,17 @@ decl_module! {
 
 			Reasons::<T, I>::insert(&reason_hash, &reason);
 			Self::deposit_event(RawEvent::NewTip(hash.clone()));
-			let tips = vec![(tipper.clone(), tip_value)];
-			let tip = OpenTip {
-				reason: reason_hash,
-				who,
-				finder: tipper,
-				deposit: Zero::zero(),
-				closes: None,
-				tips,
-				finders_fee: false,
-			};
-			Tips::<T, I>::insert(&hash, tip);
+			// let tips = vec![(tipper.clone(), tip_value)];
+			// let tip = OpenTip {
+			// 	reason: reason_hash,
+			// 	who,
+			// 	finder: tipper,
+			// 	deposit: Zero::zero(),
+			// 	closes: None,
+			// 	tips,
+			// 	finders_fee: false,
+			// };
+			// Tips::<T, I>::insert(&hash, tip);
 		}
 
 		/// Declare a tip value for an already-open tip.
@@ -754,7 +754,7 @@ decl_module! {
 		/// - DbReads: `Tippers`, `Tips`
 		/// - DbWrites: `Tips`
 		/// # </weight>
-		#[weight = T::WeightInfo::tip(T::Tippers::max_len() as u32)]
+		// #[weight = T::WeightInfo::tip(T::Tippers::max_len() as u32)]
 		fn tip(origin, hash: T::Hash, #[compact] tip_value: BalanceOf<T, I>) {
 			let tipper = ensure_signed(origin)?;
 			ensure!(T::Tippers::contains(&tipper), BadOrigin);
@@ -763,7 +763,7 @@ decl_module! {
 			if Self::insert_tip_and_check_closing(&mut tip, tipper, tip_value) {
 				Self::deposit_event(RawEvent::TipClosing(hash.clone()));
 			}
-			Tips::<T, I>::insert(&hash, tip);
+			// Tips::<T, I>::insert(&hash, tip);
 		}
 
 		/// Close and payout a tip.
@@ -793,7 +793,7 @@ decl_module! {
 			// closed.
 			Reasons::<T, I>::remove(&tip.reason);
 			Tips::<T, I>::remove(hash);
-			Self::payout_tip(hash, tip);
+			// Self::payout_tip(hash, tip);
 		}
 
 		/// Propose a new bounty.

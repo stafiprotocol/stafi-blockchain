@@ -370,17 +370,17 @@ decl_module! {
 			}
 
 			// Amount to be locked up.
-			let locked_balance = value.min(T::Currency::total_balance(&who));
+			// let locked_balance = value.min(T::Currency::total_balance(&who));
 
 			// lock
-			T::Currency::set_lock(
-				T::ModuleId::get(),
-				&who,
-				locked_balance,
-				WithdrawReasons::except(WithdrawReason::TransactionPayment),
-			);
+			// T::Currency::set_lock(
+			// 	T::ModuleId::get(),
+			// 	&who,
+			// 	locked_balance,
+			// 	WithdrawReasons::except(WithdrawReason::TransactionPayment),
+			// );
 
-			Voting::<T>::insert(&who, (locked_balance, votes));
+			// Voting::<T>::insert(&who, (locked_balance, votes));
 		}
 
 		/// Remove `origin` as a voter. This removes the lock and returns the bond.
@@ -520,7 +520,7 @@ decl_module! {
 			ensure!(is_candidate.is_err(), Error::<T>::DuplicatedCandidate);
 
 			// assured to be an error, error always contains the index.
-			let index = is_candidate.unwrap_err();
+			// let index = is_candidate.unwrap_err();
 
 			ensure!(!Self::is_member(&who), Error::<T>::MemberSubmit);
 			ensure!(!Self::is_runner_up(&who), Error::<T>::RunnerSubmit);
@@ -528,7 +528,7 @@ decl_module! {
 			T::Currency::reserve(&who, T::CandidacyBond::get())
 				.map_err(|_| Error::<T>::InsufficientCandidateFunds)?;
 
-			<Candidates<T>>::mutate(|c| c.insert(index, who));
+			// <Candidates<T>>::mutate(|c| c.insert(index, who));
 		}
 
 		/// Renounce one's intention to be a candidate for the next election round. 3 potential
