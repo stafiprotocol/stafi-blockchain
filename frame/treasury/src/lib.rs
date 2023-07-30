@@ -754,7 +754,7 @@ decl_module! {
 		/// - DbReads: `Tippers`, `Tips`
 		/// - DbWrites: `Tips`
 		/// # </weight>
-		// #[weight = T::WeightInfo::tip(T::Tippers::max_len() as u32)]
+		#[weight = T::WeightInfo::tip(T::Tippers::max_len() as u32)]
 		fn tip(origin, hash: T::Hash, #[compact] tip_value: BalanceOf<T, I>) {
 			let tipper = ensure_signed(origin)?;
 			ensure!(T::Tippers::contains(&tipper), BadOrigin);
